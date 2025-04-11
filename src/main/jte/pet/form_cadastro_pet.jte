@@ -9,8 +9,9 @@
 @param boolean cadastro = false
 @param boolean edicao = false
 @param Long donoId = null
+@param boolean logado
 
-@template.layout.main(content = @`
+@template.layout.main(logado = logado, content = @`
 
     @if (cadastro || edicao)
         <div id="success-box" class="success-box">Pet ${cadastro ? "cadastrado" : "editado"} com sucesso!</div>

@@ -2,7 +2,7 @@ package ifba.saj.demo.petshop.service.impl;
 
 import ifba.saj.demo.petshop.domain.dto.DonoDTO;
 import ifba.saj.demo.petshop.domain.mapping.DonoMapper;
-import ifba.saj.demo.petshop.exception.CPFDuplicadoException;
+import ifba.saj.demo.petshop.exception.RecursoDuplicadoException;
 import ifba.saj.demo.petshop.repository.DonoRepository;
 import ifba.saj.demo.petshop.service.DonoService;
 import java.util.List;
@@ -22,7 +22,7 @@ public class DonoServiceImpl implements DonoService {
 
     if ((dono.getId() != null && !optId.isEmpty() && !optId.get().equals(dono.getId()))
         || (dono.getId() == null && !optId.isEmpty())) {
-      throw new CPFDuplicadoException();
+      throw new RecursoDuplicadoException("CPF duplicado.");
     }
 
     repository.save(mapper.toEntity(dono));

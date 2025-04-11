@@ -3,7 +3,7 @@ package ifba.saj.demo.petshop.controller;
 import static ifba.saj.demo.petshop.consts.RequestPathConstants.VETERINARIO;
 
 import ifba.saj.demo.petshop.domain.dto.VeterinarioDTO;
-import ifba.saj.demo.petshop.exception.CRMVDuplicadoException;
+import ifba.saj.demo.petshop.exception.RecursoDuplicadoException;
 import ifba.saj.demo.petshop.exception.ValidationErrorDTO;
 import ifba.saj.demo.petshop.service.EspecialidadeService;
 import ifba.saj.demo.petshop.service.VeterinarioService;
@@ -11,6 +11,7 @@ import ifba.saj.demo.petshop.util.ControllerUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(VETERINARIO)
 @Slf4j
 @RequiredArgsConstructor
+@Secured("ADMIN")
 public class VeterinarioController {
 
   private static final String VIEWS_FOLDER = "veterinario/";
@@ -31,6 +33,7 @@ public class VeterinarioController {
   public ModelAndView listAll() {
     var model = new ModelAndView();
     model.setViewName(VIEWS_FOLDER + "lista_veterinarios");
+
     model.addObject("veterinarios", veterinarioService.getAll());
     return model;
   }
@@ -73,7 +76,7 @@ public class VeterinarioController {
 
         return model;
       }
-    } catch (CRMVDuplicadoException e) {
+    } catch (RecursoDuplicadoException e) {
       errors.getErrors().add(new ValidationErrorDTO.FieldError("crmv", e.getMessage()));
     }
 

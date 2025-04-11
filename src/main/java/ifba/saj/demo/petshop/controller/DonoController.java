@@ -3,7 +3,7 @@ package ifba.saj.demo.petshop.controller;
 import static ifba.saj.demo.petshop.consts.RequestPathConstants.DONO;
 
 import ifba.saj.demo.petshop.domain.dto.DonoDTO;
-import ifba.saj.demo.petshop.exception.CPFDuplicadoException;
+import ifba.saj.demo.petshop.exception.RecursoDuplicadoException;
 import ifba.saj.demo.petshop.exception.ValidationErrorDTO;
 import ifba.saj.demo.petshop.service.DonoService;
 import ifba.saj.demo.petshop.service.PetService;
@@ -90,7 +90,7 @@ public class DonoController {
 
         return model;
       }
-    } catch (CPFDuplicadoException e) {
+    } catch (RecursoDuplicadoException e) {
       errors.getErrors().add(new ValidationErrorDTO.FieldError("cpf", e.getMessage()));
     }
 

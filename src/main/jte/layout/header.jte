@@ -1,3 +1,5 @@
+@param boolean logado
+
 <header class="header">
     <div class="container">
         <div class="header-logo">
@@ -8,8 +10,14 @@
         <nav class="header-nav">
             <ul id="header-nav">
                 <li><a href="/">Home</a></li>
-                <li><a href="/dono">Donos</a></li>
                 <li><a href="/veterinario">Veterinarios</a></li>
+                @if (logado)
+                    <li><a href="/dono">Donos</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                @else
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/cadastro">Cadastro</a></li>
+                @endif
             </ul>
         </nav>
     </div>

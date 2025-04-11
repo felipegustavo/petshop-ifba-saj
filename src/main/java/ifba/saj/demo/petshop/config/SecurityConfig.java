@@ -29,10 +29,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         List<String> papeis = papelRepository.findAll().stream().map(PapelEntity::getPapel).toList();
 
-        return http.
-                authorizeHttpRequests(auth ->
-                    auth.requestMatchers("/", "/img/**", "/js/**", "/css/**", VETERINARIO, "/h2-console/**").permitAll()
-                            .anyRequest().hasAnyRole(papeis.toArray(new String[0]))
+        return http
+                .authorizeHttpRequests(auth ->
+                    auth.requestMatchers("/cadastro", "/", "/img/**", "/js/**", "/css/**", VETERINARIO, "/error", "/h2-console/**").permitAll()
+                            .anyRequest().hasAnyAuthority(papeis.toArray(new String[0]))
                             //.anyRequest().authenticated()
                             //.anyRequest().hasRole("ADMIN")
                 )
@@ -40,6 +40,8 @@ public class SecurityConfig {
                 .formLogin(login -> login.loginPage("/login").permitAll())
                 .logout(logout -> logout.logoutSuccessUrl("/login?logout").permitAll())
                 .userDetailsService(userDetailsService)
+                .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions().disable())
                 .build();
     }
 

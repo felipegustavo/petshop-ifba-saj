@@ -7,8 +7,9 @@
 @param List<VeterinarioDTO> veterinarios
 @param ValidationErrorDTO errors = new ValidationErrorDTO()
 @param Long petId = null
+@param boolean logado
 
-@template.layout.main(content = @`
+@template.layout.main(logado = logado, content = @`
 
     <button class="btn-cadastrar" onclick="history.back()">Voltar</button>
 

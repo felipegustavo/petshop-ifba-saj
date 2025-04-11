@@ -4,8 +4,9 @@
 
 @param List<DonoDTO> donos
 @param boolean erroCpf = false
+@param boolean logado
 
-@template.layout.main(content = @`
+@template.layout.main(logado = logado, content = @`
 
     <h2 class="title-page">Donos Cadastrados</h2>
 

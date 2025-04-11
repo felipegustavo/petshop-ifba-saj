@@ -3,12 +3,15 @@
 @import java.util.List
 
 @param List<VeterinarioDTO> veterinarios
+@param boolean logado
 
-@template.layout.main(content = @`
+@template.layout.main(logado = logado, content = @`
 
     <h2 class="title-page">Veterinários Cadastrados</h2>
 
-    <a href="/veterinario/cadastrar" class="btn-cadastrar">+ Cadastrar Veterinário</a>
+    @if (logado)
+        <a href="/veterinario/cadastrar" class="btn-cadastrar">+ Cadastrar Veterinário</a>
+    @endif
 
     <table class="tabela">
         <thead>
@@ -17,7 +20,9 @@
             <th>Nome</th>
             <th>CRMV</th>
             <th>Especialidades</th>
-            <th>Ações</th>
+            @if (logado)
+                <th>Ações</th>
+            @endif
         </tr>
         </thead>
 
@@ -28,9 +33,11 @@
                 <td>${veterinario.getNome()}</td>
                 <td>${veterinario.getCrmv()}</td>
                 <td>${veterinario.getNomesEspecialidades()}</td>
-                <td>
-                    <a href="/veterinario/editar/${veterinario.getId()}" class="btn-editar">Editar</a>
-                </td>
+                @if (logado)
+                    <td>
+                        <a href="/veterinario/editar/${veterinario.getId()}" class="btn-editar">Editar</a>
+                    </td>
+                @endif
             </tr>
         @endfor
         </tbody>

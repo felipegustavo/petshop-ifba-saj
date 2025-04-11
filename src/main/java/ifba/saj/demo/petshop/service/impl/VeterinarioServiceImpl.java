@@ -2,7 +2,7 @@ package ifba.saj.demo.petshop.service.impl;
 
 import ifba.saj.demo.petshop.domain.dto.VeterinarioDTO;
 import ifba.saj.demo.petshop.domain.mapping.VeterinarioMapper;
-import ifba.saj.demo.petshop.exception.CRMVDuplicadoException;
+import ifba.saj.demo.petshop.exception.RecursoDuplicadoException;
 import ifba.saj.demo.petshop.repository.VeterinarioRepository;
 import ifba.saj.demo.petshop.service.VeterinarioService;
 import java.util.List;
@@ -24,7 +24,7 @@ public class VeterinarioServiceImpl implements VeterinarioService {
             && !optId.isEmpty()
             && !optId.get().equals(veterinario.getId()))
         || (veterinario.getId() == null && !optId.isEmpty())) {
-      throw new CRMVDuplicadoException();
+      throw new RecursoDuplicadoException("CRMV duplicado.");
     }
 
     repository.save(mapper.toEntity(veterinario));

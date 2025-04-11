@@ -3,8 +3,9 @@
 @import java.util.List
 
 @param List<ConsultaDTO> consultas
+@param boolean logado
 
-@template.layout.main(content = @`
+@template.layout.main(logado = logado, content = @`
 
     <h2 class="title-page">Consultas Cadastrados</h2>
 

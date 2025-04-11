@@ -1,4 +1,6 @@
-@template.layout.main(content = @`
+@param boolean logado
+
+@template.layout.main(logado = logado, content = @`
 
     <div class="hero">
         <h1>Amamos o seu pet assim como você!</h1>

@@ -1,4 +1,5 @@
 @param gg.jte.Content content
+@param boolean logado = false
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,7 +13,7 @@
 <body>
 
     <div class="wrapper">
-        @template.layout.header()
+        @template.layout.header(logado = logado)
 
         <main class="main container">
             ${content}
